@@ -1,13 +1,75 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.marquee-content {
+  animation: scrolling 20s linear infinite;
+}
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+.marquee-content li {
+  width: 20%;
+}
+.marquee:before,
+.marquee:after {
+  position: absolute;
+  top: 0;
+  width: 10rem;
+  height: 3em;
+  content: "";
+  z-index: 1;
+}
+.marquee:before {
+  left: 0;
+  background: linear-gradient(to right, #111 0%, transparent 100%);
+}
+.marquee:after {
+  right: 0;
+  background: linear-gradient(to left, #111 0%, transparent 100%);
+}
+.event {
+  background-image: url("./asset/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  background-position: center;
+  position: relative;
+}
+.event:before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6em;
+  content: "";
+  z-index: 1;
+  background: -moz-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
 }
