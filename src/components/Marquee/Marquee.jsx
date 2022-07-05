@@ -6,7 +6,7 @@ const Marquee = () => {
   const [coins, setCoins] = useState([]);
 
   useEffect(() => {
-    const fentchApi = async () => {
+    const fetchApi = async () => {
       const res = await axios.get(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       );
@@ -14,10 +14,12 @@ const Marquee = () => {
       setCoins(res.data);
     };
 
-    setInterval(() => {
-      fentchApi();
+    const timerId = setTimeout(() => {
+      fetchApi();
     }, 2000);
-  }, []);
+
+    return () => clearTimeout(timerId);
+  }, [coins]);
 
   const tenItems = [...coins].splice(0, 10);
 
